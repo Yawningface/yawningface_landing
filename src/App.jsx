@@ -1,10 +1,6 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import Home from './pages/Home';
-import Pomodoro from './pages/Pomodoro';
-import DayOfYear from './pages/DayOfYear';
-import Chronometer from "./pages/Chronometer";
-import DeadlineCountdownComponent from './pages/DeadlineCountdown';
+import Landing from './pages/Landing';
 
 function App() {
   return (
@@ -12,11 +8,7 @@ function App() {
       
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/pomodoro" element={<Pomodoro />} />
-        <Route path="/deadline-countdown" element={<DeadlineCountdownComponent />} />
-        <Route path="/day-of-year" element={<DayOfYear />} />
-        <Route path="/chronometer" element={<Chronometer />} />
+        <Route path="/" element={<Landing />} />
 
       </Routes>
     </div>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const AdComponent = ({ image, title, description, link }) => (
   <Link
-    to={link} // Navigates within the same tab
+    to={link}
     className="bg-[#1F2937] text-[#e5e7eb] rounded-[15px] shadow-md overflow-hidden w-44 transition transform hover:scale-105 hover:shadow-xl cursor-pointer"
   >
     <img src={image} alt={title} className="w-full h-40 object-cover" />
