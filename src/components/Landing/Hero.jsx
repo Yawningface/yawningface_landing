@@ -19,26 +19,9 @@ const Hero = () => {
           and combat the challenges of <strong>digital distraction</strong>.
         </p>
 
-        {/* Call-to-Action Button */}
-        <a
-          href="https://yawningface.org"
-          className="inline-flex items-center gap-2 bg-white text-gray-900 font-semibold py-3 px-6 rounded-lg shadow-md transition-transform hover:scale-105 hover:bg-gray-200"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          🚀 Get Started <ArrowRight size={16} />
-        </a>
+        
 
-        {/* Free Tag */}
-        <p className="mt-6 text-sm text-green-400 font-semibold underline underline-offset-4 decoration-dotted">
-          100% Free & Open Source
-        </p>
-
-        {/* Footer Note */}
-        <p className="mt-4 text-xs text-gray-500">
-          YawningFace is committed to privacy-first, distraction-free productivity. 
-          Read our <a href="https://yawningface.org/privacy" className="underline hover:text-yellow-400">Privacy Policy</a>.
-        </p>
+     
       </div>
     </section>
   );
