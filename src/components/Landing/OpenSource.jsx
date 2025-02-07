@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star } from 'lucide-react';
+import { Star, Sparkles } from 'lucide-react';
 
 const OpenSourceGrid = () => {
   const projects = [
@@ -48,10 +48,35 @@ const OpenSourceGrid = () => {
   ];
 
   return (
-    <div className="bg-gray-900 min-h-screen p-8">
+    <div className="relative bg-gray-900 p-8">
+      {/* Inline CSS for the progressive blur overlay */}
+      <style>{`
+        .progressive-blur-overlay::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          z-index: -1;
+          /* Background gradient tinted with #111827:
+             Transparent at the top, opaque at the bottom */
+          background: linear-gradient(to bottom, rgba(17,24,39,0), rgba(17,24,39,1));
+          /* Strong blur effect */
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          /* Reveal the pseudo-element progressively from top (no blur) to bottom (full blur) */
+          mask-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
+          -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
+        }
+      `}</style>
+
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold text-white text-center mb-2">Our Open Source</h1>
-        <p className="text-gray-400 text-center mb-12">
+        {/* Updated Title */}
+        <h1 className="select-none text-4xl md:text-5xl font-extrabold mb-4 flex items-center justify-center gap-2">
+          Our <span className="text-[#ebb305]">Open Source</span>
+          <Sparkles size={28} className="text-yellow-400 animate-pulse" />
+        </h1>
+        {/* Updated Subtitle (centered) */}
+        <p className="select-none text-gray-400 text-lg mb-12 text-center">
           We are building the foundation of productivity tools with the community.
         </p>
 
@@ -69,7 +94,9 @@ const OpenSourceGrid = () => {
                   className="w-3 h-3 rounded-full"
                   style={{ backgroundColor: project.color }}
                 />
-                <h2 className="text-xl font-semibold text-white">{project.name}</h2>
+                <h2 className="text-xl font-semibold text-white">
+                  {project.name}
+                </h2>
               </div>
 
               <div className="flex items-center gap-2 text-gray-400 mb-4">
@@ -83,6 +110,13 @@ const OpenSourceGrid = () => {
             </a>
           ))}
         </div>
+      </div>
+
+      {/* "Coming Soon" Overlay with Progressive Blur */}
+      <div className="absolute inset-0 z-30 flex items-center justify-center progressive-blur-overlay">
+        <h1 className="text-4xl text-white font-bold relative">
+          Coming Soon
+        </h1>
       </div>
     </div>
   );
