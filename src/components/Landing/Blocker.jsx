@@ -5,13 +5,15 @@ const Blocker = () => {
   return (
     <section className="bg-gray-900 text-white py-20 px-6 md:px-12 lg:px-24 flex flex-col md:flex-row items-center gap-12">
       <div className="max-w-md text-center md:text-left">
-        {/* Smaller title, no "Blocker 🚫" */}
-        <h1 className="text-3xl md:text-4xl font-extrabold leading-tight mb-6 text-[#ebb305]">
-          Stay Focused
+        {/* Modified title: "Stay" in white and "Focused" in yellow */}
+        <h1 className="text-3xl md:text-4xl font-extrabold leading-tight mb-6">
+          <span className="text-white">Stay</span>{' '}
+          <span className="text-[#ebb305]">Focused</span>
         </h1>
 
         <p className="text-gray-400 text-lg mb-8">
-          Take control of your productivity by blocking distracting websites and apps. Stay focused, stay efficient, and achieve your goals with ease.
+          Take control of your productivity by blocking distracting websites and apps.
+          Stay focused, stay efficient, and achieve your goals with ease.
         </p>
 
         {/* Call-to-Action Button -> block.yawningface.org */}
