@@ -16,9 +16,9 @@ const Blocker = () => {
           Stay focused, stay efficient, and achieve your goals with ease.
         </p>
 
-        {/* Call-to-Action Button -> block.yawningface.org */}
-         <a
-          href="block.yawningface.org"
+        {/* Call-to-Action Button -> fixed link to block.yawningface.org */}
+        <a
+          href="https://block.yawningface.org"
           className="inline-flex items-center px-6 py-3 bg-[#ebb305] text-gray-900 font-bold rounded hover:bg-yellow-500 transition"
         >
           Learn More <ArrowRight className="ml-2" />
