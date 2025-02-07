@@ -17,13 +17,11 @@ const Blocker = () => {
         </p>
 
         {/* Call-to-Action Button -> block.yawningface.org */}
-        <a
-          href="https://block.yawningface.org"
-          className="inline-flex items-center gap-2 bg-white text-gray-900 font-semibold py-3 px-6 rounded-lg shadow-md transition-transform hover:scale-105 hover:bg-gray-200"
-          target="_blank"
-          rel="noopener noreferrer"
+         <a
+          href="block.yawningface.org"
+          className="inline-flex items-center px-6 py-3 bg-[#ebb305] text-gray-900 font-bold rounded hover:bg-yellow-500 transition"
         >
-          🚀 Get Started <ArrowRight size={16} />
+          Learn More <ArrowRight className="ml-2" />
         </a>
 
         {/* "Free & Open Source" line without dotted underline or green color */}
