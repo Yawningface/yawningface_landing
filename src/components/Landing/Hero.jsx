@@ -22,7 +22,7 @@ const Hero = () => {
 
         {/* Updated Subheadline with Bolded Key Phrases */}
         <p className="text-lg md:text-xl text-gray-400 mb-8">
-          YawningFace creates tools designed to <strong>reduce distractions</strong> and <strong>increase productivity</strong> to combat the challenges of digital addiction.
+          YawningFace creates tools designed to <strong>reduce distractions</strong> and <strong>increase productivity</strong>
         </p>
       </div>
     </section>

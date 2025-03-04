@@ -1,81 +1,99 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Star, Sparkles } from 'lucide-react';
 
+const initialProjects = [
+  {
+    name: 'Block',
+    repoOwner: 'Yawningface',
+    repoName: 'block',
+    description: 'A productivity tool to block distracting websites and apps effectively.',
+    color: '#8B5CF6',
+    link: 'https://github.com/Yawningface/block',
+    stars: 0,
+  },
+  {
+    name: 'Browser Start Page',
+    repoOwner: 'Yawningface',
+    repoName: 'browser-start-page',
+    description: 'A customizable new tab page to remove distractions and boost productivity.',
+    color: '#F97316',
+    link: 'https://github.com/Yawningface/browser-start-page',
+    stars: 0,
+  },
+  {
+    name: 'Labs',
+    repoOwner: 'Yawningface',
+    repoName: 'labs',
+    description: 'Innovative productivity experiments.',
+    color: '#EF4444',
+    link: 'https://github.com/Yawningface/labs',
+    stars: 0,
+  },
+  {
+    name: 'Notion Widgets',
+    repoOwner: 'Yawningface',
+    repoName: 'notion-widgets',
+    description: 'Customizable widgets to enhance your Notion dashboard experience.',
+    color: '#FF8C42',
+    link: 'https://github.com/Yawningface/notion-widgets',
+    stars: 0,
+  },
+  {
+    name: 'Pomodoro Timer',
+    repoOwner: 'Yawningface',
+    repoName: 'pomodoro',
+    description: 'A minimalistic Pomodoro timer to boost your productivity.',
+    color: '#84CC16',
+    link: 'https://github.com/Yawningface/pomodoro',
+    stars: 0,
+  },
+  {
+    name: 'Lofi Hip Hop Beats',
+    repoOwner: 'Yawningface',
+    repoName: 'lofi',
+    description: 'Lofi music and ambient sounds for a perfect study atmosphere.',
+    color: '#3B82F6',
+    link: 'https://github.com/Yawningface/lofi',
+    stars: 0,
+  },
+];
+
 const OpenSourceGrid = () => {
-  const projects = [
-    {
-      name: 'Notion Widgets',
-      stars: '12,345',
-      description: 'Customizable widgets to enhance your Notion dashboard experience.',
-      color: '#FF8C42',
-      link: 'https://example.com'
-    },
-    {
-      name: 'YawningFace Blocker',
-      stars: '8,910',
-      description: 'A productivity tool to block distracting websites and apps effectively.',
-      color: '#8B5CF6',
-      link: 'https://example.com'
-    },
-    {
-      name: 'YawningFace Study',
-      stars: '6,789',
-      description: 'Focus-oriented study platform with features tailored for students.',
-      color: '#EF4444',
-      link: 'https://example.com'
-    },
-    {
-      name: 'YawningFace Pomodoro',
-      stars: '4,321',
-      description: 'A minimalistic Pomodoro timer to boost your productivity.',
-      color: '#84CC16',
-      link: 'https://example.com'
-    },
-    {
-      name: 'YawningFace Lofi Study',
-      stars: '9,876',
-      description: 'Lofi music and ambient sounds for a perfect study atmosphere.',
-      color: '#3B82F6',
-      link: 'https://example.com'
-    },
-    {
-      name: 'SAAS Template',
-      stars: '15,432',
-      description: 'A modern SAAS template for fast and scalable web application development.',
-      color: '#F97316',
-      link: 'https://example.com'
-    }
-  ];
+  const [projects, setProjects] = useState(initialProjects);
+
+  useEffect(() => {
+    const fetchStars = async () => {
+      const updatedProjects = await Promise.all(
+        projects.map(async (project) => {
+          try {
+            const res = await fetch(
+              `https://api.github.com/repos/${project.repoOwner}/${project.repoName}`
+            );
+            if (res.ok) {
+              const data = await res.json();
+              return { ...project, stars: data.stargazers_count };
+            } else {
+              return project;
+            }
+          } catch (error) {
+            console.error(error);
+            return project;
+          }
+        })
+      );
+      setProjects(updatedProjects);
+    };
+
+    fetchStars();
+  }, []);
 
   return (
-    <div className="relative bg-gray-900 p-8">
-      {/* Inline CSS for the progressive blur overlay */}
-      <style>{`
-        .progressive-blur-overlay::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
-          z-index: -1;
-          /* Background gradient tinted with #111827:
-             Transparent at the top, opaque at the bottom */
-          background: linear-gradient(to bottom, rgba(17,24,39,0), rgba(17,24,39,1));
-          /* Strong blur effect */
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-          /* Reveal the pseudo-element progressively from top (no blur) to bottom (full blur) */
-          mask-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
-          -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
-        }
-      `}</style>
-
+    <div className="bg-gray-900 p-8">
       <div className="max-w-6xl mx-auto">
-        {/* Updated Title */}
         <h1 className="select-none text-4xl md:text-5xl font-extrabold mb-4 flex items-center justify-center gap-2">
           Our <span className="text-[#ebb305]">Open Source</span>
           <Sparkles size={28} className="text-yellow-400 animate-pulse" />
         </h1>
-        {/* Updated Subtitle (centered) */}
         <p className="select-none text-gray-400 text-lg mb-12 text-center">
           We are building the foundation of productivity tools with the community.
         </p>
@@ -101,7 +119,7 @@ const OpenSourceGrid = () => {
 
               <div className="flex items-center gap-2 text-gray-400 mb-4">
                 <Star size={14} fill="currentColor" className="text-yellow-400" />
-                <span className="text-sm">{project.stars}</span>
+                <span className="text-sm">{project.stars.toLocaleString()}</span>
               </div>
 
               <p className="text-gray-400 text-sm leading-relaxed">
@@ -110,13 +128,6 @@ const OpenSourceGrid = () => {
             </a>
           ))}
         </div>
-      </div>
-
-      {/* "Coming Soon" Overlay with Progressive Blur */}
-      <div className="absolute inset-0 z-30 flex items-center justify-center progressive-blur-overlay">
-        <h1 className="text-4xl text-white font-bold relative">
-          Coming Soon
-        </h1>
       </div>
     </div>
   );
