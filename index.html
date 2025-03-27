@@ -1,13 +1,70 @@
-<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yawning Face</title>
+    
+    <!-- Cookie Consent CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
   </head>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Cookie Consent JS -->
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+    
+    <!-- Google Analytics with Cookie Consent Integration -->
+    <script>
+      // Function to load GA only after consent
+      function loadGoogleAnalytics() {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-WXS2F714VS';
+        document.head.appendChild(script);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WXS2F714VS', {
+          'anonymize_ip': true // GDPR recommended
+        });
+      }
+
+      // Cookie Consent configuration
+      window.addEventListener("load", function(){
+        window.cookieconsent.initialise({
+          "palette": {
+            "popup": {
+              "background": "#252e39"
+            },
+            "button": {
+              "background": "#EBB303" // Updated to your requested color
+            }
+          },
+          "position": "bottom-right",
+          "content": {
+            "message": "This website uses cookies to ensure you get the best experience.",
+            "dismiss": "Accept",
+            "link": "Learn more",
+            "href": "/privacy-policy"
+          },
+          "type": "opt-in",
+          "revokable": true,
+          onInitialise: function(status) {
+            if (this.hasConsented()) {
+              loadGoogleAnalytics();
+            }
+          },
+          onStatusChange: function(status) {
+            if (this.hasConsented()) {
+              loadGoogleAnalytics();
+            }
+          }
+        });
+      });
+    </script>
   </body>
 </html>
