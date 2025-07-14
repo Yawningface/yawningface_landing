@@ -53,12 +53,12 @@ const Blocker = () => {
           </a>
 
           {/* Existing Learn More Button with Hover Scale */}
-          <a
+          {/* <a
             href="https://block.yawningface.org"
             className="inline-flex items-center px-6 py-3 bg-[#ebb305] text-gray-900 font-bold rounded transition transform hover:scale-105"
           >
             Learn More <ArrowRight className="ml-2" />
-          </a>
+          </a>*/}
         </div>
 
         {/* "Free & Open Source" line */}
