@@ -6,7 +6,7 @@ const services = [
     icon: <Shield size={40} className="text-yellow-400" />,
     title: 'Yawning Block',
     description: 'Block distractions, stay productive.',
-    link: 'https://block.yawningface.org',
+    link: 'https://chromewebstore.google.com/detail/block/kfnhibndbkdjcplihjhbhdhclpbiocen',
   },
   {
     icon: <Briefcase size={40} className="text-yellow-400" />,
